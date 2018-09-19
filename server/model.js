@@ -4,14 +4,17 @@ mongoose.connect('mongodb://localhost:27017/products_db', {useNewUrlParser: true
 
 const ProductSchema = mongoose.Schema({
     title: {
+        type: String,
         required: true,
         minlength: [4, "Title must be at least 4 characters long"]
     },
     price: {
-        required: [true, "Please include product price"]
+        type: Number,
+        required: [true, "Please include product price"],
+        min: [0.1, "Price must be at least greater than 0"]
     },
-    imgUrl: {
-        required: false
+    url: {
+        type: String
     }
 }, {timestamps: true});
 

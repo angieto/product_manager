@@ -1,3 +1,18 @@
-<p>
-  edit works!
-</p>
+<div class="container mx-auto text-center">
+    <h2 class="text-success mt-3">Add Your Product!</h2>
+    <div class="form-group col-6 mx-auto mt-3">
+        <form (submit)="updateProduct()">
+            {{updatedProduct | json}}
+            <input class="form-control" type="text" name="updatedProduct['title']" [(ngModel)]="updatedProduct['title']" placeholder="{{ updatedProduct['title'] }}">
+            <input class="form-control" type="number" name="updatedProduct['price']" [(ngModel)]="updatedProduct['price']" value="{{updatedProduct['price']}}">
+            <input class="form-control" type="text" name="updatedProduct['url']" [(ngModel)]="updatedProduct['url']" placeholder="{{ updatedProduct['url'] }}"> <br>
+            <button type="submit" class="btn btn-success mx-2">Update</button>
+
+        </form>
+        <button class="btn btn-danger" [routerLink]="[ '/' ]">Cancel</button>
+        <div *ngIf="wrongInput">
+            <p class="text-danger mt-3">{{ wrongInput.title.message }}</p>
+            <p class="text-danger mt-3">{{ wrongInput.price.message }}</p>
+        </div>
+    </div>
+</div>

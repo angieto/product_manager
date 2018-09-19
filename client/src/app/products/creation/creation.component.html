@@ -1,3 +1,16 @@
-<p>
-    creation works!
-</p>
+<div class="container mx-auto text-center">
+    <h2 class="text-success mt-3">Add Your Product!</h2>
+    <div class="form-group col-6 mx-auto mt-3">
+        <form (submit)="createProduct()">
+            <input class="form-control" type="text" name="newProduct.title" [(ngModel)]="newProduct.title" placeholder="Title">
+            <input class="form-control" type="number" min="0" name="newProduct.price" [(ngModel)]="newProduct.price" placeholder="Price">
+            <input class="form-control" type="text" name="newProduct.url" [(ngModel)]="newProduct.url" placeholder="Image Url"> <br>
+            <button type="submit" class="btn btn-success mx-2">Create</button>
+            <button class="btn btn-danger" [routerLink]="[ '/' ]">Cancel</button>
+        </form>
+        <div *ngIf="wrongInput">
+            <p class="text-danger mt-3">{{ wrongInput.title.message }}</p>
+            <p class="text-danger mt-3">{{ wrongInput.price.message }}</p>
+        </div>
+    </div>
+</div>
