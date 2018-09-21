@@ -3,6 +3,9 @@ const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/products_db', {useNewUrlParser: true}, errs => console.log(errs?errs:"running product_db"));
 
 const ProductSchema = mongoose.Schema({
+    id : {
+        type: Number
+    },
     name: {
         type: String,
         required: [true, "Product name is missing"],

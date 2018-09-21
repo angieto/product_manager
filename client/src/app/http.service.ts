@@ -21,11 +21,13 @@ export class HttpService {
     }
 
     updateProduct(id, product) {
-        return this._http.put('/api/products/'+id, product);
+        return this._http.patch('/api/products/'+id, product);
     }
 
     deleteProduct(id) {
         return this._http.delete('/api/products/'+id);
     }
+
+    
 
 }

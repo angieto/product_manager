@@ -9,7 +9,7 @@ import { ProductsComponent } from './products/products.component';
 import { CreationComponent } from './products/creation/creation.component';
 import { EditComponent } from './products/edit/edit.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DisplayComponent } from './products/display/display.component';
 import { DetailComponent } from './products/detail/detail.component';
 
@@ -27,7 +27,8 @@ import { DetailComponent } from './products/detail/detail.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [HttpService],
   bootstrap: [AppComponent]

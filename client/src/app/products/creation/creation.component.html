@@ -1,13 +1,17 @@
 <div class="container mx-auto text-center">
     <h2 class="text-success mt-3">Add Your Product!</h2>
-    <div class="form-group col-6 mx-auto mt-3">
+    <div [formGroup]="productForm" class="form-group col-6 mx-auto mt-3">
         <form (submit)="createProduct()">
             <label>Name</label>
-            <input class="form-control" type="text" name="newProduct.name" [(ngModel)]="newProduct.name">
+            <input class="form-control" type="text" name="newProduct.name" required minlenght="3"
+            [(ngModel)]="newProduct.name">
+
             <label>Quantity</label>
-            <input class="form-control" type="number" min="0" name="newProduct.qty" [(ngModel)]="newProduct.qty">
+            <input class="form-control" type="number" min="0" name="newProduct.qty" required min="0"
+            [(ngModel)]="newProduct.qty">
             <label>Price</label>
-            <input class="form-control" type="number" min="0" name="newProduct.price" [(ngModel)]="newProduct.price">
+            <input class="form-control" type="number" min="0" name="newProduct.price" required min="0"
+            [(ngModel)]="newProduct.price">
 
             <button type="submit" class="btn btn-success mx-2">Create</button>
             
@@ -20,3 +24,4 @@
         </div>
     </div>
 </div>
+<p>{{ name.errors | json }}</p> 

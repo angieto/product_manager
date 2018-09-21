@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../http.service';
 import { ActivatedRoute, Router, Params } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
     selector: 'app-creation',
@@ -9,19 +10,26 @@ import { ActivatedRoute, Router, Params } from '@angular/router';
 })
 export class CreationComponent implements OnInit {
     newProduct: any = {
-        // id = math.floor(math.random() * 100) + 1,
+        id: Math.floor(Math.random() * 100) + 1,
         name: "",
         qty: 0,
         price: 0,
     }
     wrongInput;
 
+    productForm: FormGroup;
+
     constructor(private _httpService: HttpService,
                 private _route: ActivatedRoute,
-                private _router: Router) { }
+                private _router: Router,
+                private fb: FormBuilder) { }
 
     ngOnInit() {
-        
+        this.productForm = this.fb.group({
+            name: ['', [Validators.required, Validators.minLength(3)]],
+            qty: ['', [Validators.required, Validators.min(0)]],
+            price: ['', [Validators.required, Validators.min(0)]]
+        })
     }
 
     createProduct(product) {
@@ -35,13 +43,14 @@ export class CreationComponent implements OnInit {
                 this._router.navigate(['/']);
             }
         });
-        this.newProduct = { name: "", qty: 0, price: 0 };
+        this.newProduct = {         
+            id: Math.floor(Math.random() * 100) + 1,
+            name: "",
+            qty: 0,
+            price: 0,
+        }
     }
 
-    // counter(name) {
-    //     var ret = db.counters.findAndModify({query:{_id:name}, update:{$inc : {next:1}}, “new”:true, upsert:true});
-    //     // ret == { “_id” : “users”, “next” : 1 }
-    //     return ret.next;
-    // }
+
 
 }

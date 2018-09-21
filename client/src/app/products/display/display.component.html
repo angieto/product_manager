@@ -11,13 +11,17 @@
         </thead>
         <tbody *ngFor="let product of productList.reverse()">
             <tr>
-                <td>{{ product._id }}</td>
+                <td>{{ product.id }}</td>
                 <td>{{ product.name }}</td>
                 <td>{{ product.qty }}</td>
-                <td>{{ product.price }}</td>
+                <td>${{ product.price.toFixed(2) }}</td>
                 <td>
+                    <input type="hidden" name="_id" value="product._id">
                     <button class="btn btn-primary" [routerLink]="['/products/edit', product._id]">Edit</button>
-                    <button class="btn btn-danger" [routerLink]="[ '/products', product._id ]">Details</button>
+                    <button class="btn btn-danger" 
+                    [routerLink]="[ '/products/', product._id ]">
+                    Details
+                    </button>
                 </td>
             </tr>
         </tbody>
