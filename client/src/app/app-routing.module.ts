@@ -5,13 +5,15 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ProductsComponent } from './products/products.component';
 import { DisplayComponent } from './products/display/display.component';
+import { DetailComponent } from './products/detail/detail.component';
 
 const routes: Routes = [
-    { path: '', component: HomeComponent },
+    { path: '', redirectTo: 'products', pathMatch: "full" },
     { path: 'products', component: ProductsComponent, children: [
         { path: '', component: DisplayComponent, pathMatch: 'full' },
         { path: 'new', component: CreationComponent },
         { path: 'edit/:id', component: EditComponent } 
+        { path: ':id', component: DetailComponent },
     ]},
     { path: '**', redirectTo: '/' }
 ];

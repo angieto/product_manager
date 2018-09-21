@@ -11,6 +11,7 @@ import { EditComponent } from './products/edit/edit.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { DisplayComponent } from './products/display/display.component';
+import { DetailComponent } from './products/detail/detail.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { DisplayComponent } from './products/display/display.component';
     ProductsComponent,
     CreationComponent,
     EditComponent,
-    DisplayComponent
+    DisplayComponent,
+    DetailComponent
   ],
   imports: [
     BrowserModule,

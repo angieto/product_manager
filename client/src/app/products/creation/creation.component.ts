@@ -9,9 +9,10 @@ import { ActivatedRoute, Router, Params } from '@angular/router';
 })
 export class CreationComponent implements OnInit {
     newProduct: any = {
-        title: "",
+        // id = math.floor(math.random() * 100) + 1,
+        name: "",
+        qty: 0,
         price: 0,
-        url: ""
     }
     wrongInput;
 
@@ -20,6 +21,7 @@ export class CreationComponent implements OnInit {
                 private _router: Router) { }
 
     ngOnInit() {
+        
     }
 
     createProduct(product) {
@@ -30,9 +32,16 @@ export class CreationComponent implements OnInit {
                 this.wrongInput = newProduct['errors'];
             } else {
                 console.log("Product is added!", newProduct);
+                this._router.navigate(['/']);
             }
         });
-        this.newProduct = { title: "", price: 0, url: ""};
+        this.newProduct = { name: "", qty: 0, price: 0 };
     }
+
+    // counter(name) {
+    //     var ret = db.counters.findAndModify({query:{_id:name}, update:{$inc : {next:1}}, “new”:true, upsert:true});
+    //     // ret == { “_id” : “users”, “next” : 1 }
+    //     return ret.next;
+    // }
 
 }

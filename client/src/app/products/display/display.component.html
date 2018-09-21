@@ -1,11 +1,25 @@
 <div class="container row mx-auto text-center">
-    <div *ngFor="let product of productList.reverse()" class="card mx-3 mt-3" style="width: 18rem;">
-        <img class="card-img-top" src="{{ product.url }}" alt="{{ product.title }}">
-        <div class="card-body">
-            <h5 class="card-title">{{ product.title }}</h5>
-            <p class="card-text">${{ product.price }}</p>
-            <button class="btn btn-primary" [routerLink]="[ '/products/edit', product._id ]">Update</button>
-            <button class="btn btn-danger" (click)="deleteProduct(product._id)">Delete</button>
-        </div>
-    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Qty</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let product of productList.reverse()">
+            <tr>
+                <td>{{ product._id }}</td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.qty }}</td>
+                <td>{{ product.price }}</td>
+                <td>
+                    <button class="btn btn-primary" [routerLink]="['/products/edit', product._id]">Edit</button>
+                    <button class="btn btn-danger" [routerLink]="[ '/products', product._id ]">Details</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>

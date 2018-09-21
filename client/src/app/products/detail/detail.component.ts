@@ -3,11 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../http.service';
 
 @Component({
-    selector: 'app-edit',
-    templateUrl: './edit.component.html',
-    styleUrls: ['./edit.component.css']
+    selector: 'app-detail',
+    templateUrl: './detail.component.html',
+    styleUrls: ['./detail.component.css']
 })
-export class EditComponent implements OnInit {
+export class DetailComponent implements OnInit {
     productId;
     updatedProduct = {
         name: "",
@@ -29,6 +29,10 @@ export class EditComponent implements OnInit {
         this.getProduct();
     }
 
+    goHome() {
+        this._router.navigate(['/']);
+    }
+
     getProduct() {
         let obs = this._httpService.getProduct(this.productId);
         obs.subscribe(product => {
@@ -45,16 +49,11 @@ export class EditComponent implements OnInit {
         })
     }
 
-    updateProduct() {
-        let obs = this._httpService.updateProduct(this.productId, this.updatedProduct);
-        obs.subscribe(updatedProduct => {
-            if (updatedProduct['errors']) {
-                console.log("Service couldn't update", updatedProduct);
-                this.wrongInput = updatedProduct['errors'];
-            } else if (!updatedProduct['errors']) {
-                console.log("Product got updated!", updatedProduct);
-                this._router.navigate(['/']);
-            }
+    deleteProduct(id) {
+        let obs = this._httpService.deleteProduct(this.productId);
+        obs.subscribe(product => {
+            console.log("Your product is deleted", product);
         });
+        this.goHome();
     }
 }

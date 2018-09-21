@@ -23,11 +23,5 @@ export class DisplayComponent implements OnInit {
         })
     }
 
-    deleteProduct(id) {
-        let obs = this._httpService.deleteProduct(id);
-        obs.subscribe(product => {
-            console.log("Your product is deleted", product);
-        });
-        this.showProducts();
-    }
+    
 }

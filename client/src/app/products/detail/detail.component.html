@@ -1,8 +1,7 @@
 <div class="container mx-auto text-center">
-    <h2 class="text-success mt-3">Edit Product</h2>
+    <h2 class="text-success mt-3">Product Details</h2>
     <div class="form-group col-6 mx-auto mt-3">
-        <form (submit)="updateProduct()">
-            {{updatedProduct | json}}
+        <form>
             <label>Name</label>
             <input class="form-control" type="text" name="updatedProduct['name']" [(ngModel)]="updatedProduct['name']" placeholder="{{ updatedProduct['name'] }}">
             <label>Quantity</label>
@@ -11,9 +10,9 @@
             <input class="form-control" type="number" name="updatedProduct['price']" [(ngModel)]="updatedProduct['price']" value="{{updatedProduct['price']}}">
             
             <hr>
-            <button type="submit" class="btn btn-success mx-2">Update</button>
+            <button class="btn btn-primary" [routerLink]="[ '/' ]">Back</button>
+            <button type="submit" class="btn btn-danger mx-2" (click)="deleteProduct(updatedProduct['_id'])">Delete</button>
         </form>
-        <button class="btn btn-danger" [routerLink]="[ '/' ]">Back</button>
         <div *ngIf="wrongInput">
             <p class="text-danger mt-3">{{ wrongInput.name.message }}</p>
             <p class="text-danger mt-3">{{ wrongInput.qty.message }}</p>
