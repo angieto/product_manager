@@ -4,16 +4,44 @@
         <form (submit)="updateProduct()">
             {{updatedProduct | json}}
             <label>Name</label>
-            <input class="form-control" type="text" name="updatedProduct['name']" [(ngModel)]="updatedProduct['name']" placeholder="{{ updatedProduct['name'] }}">
+            <input class="form-control" 
+            type="text" 
+            name="name"
+            required
+            #name = "ngModel" 
+            [(ngModel)]="updatedProduct['name']" 
+            placeholder="{{ updatedProduct['name'] }}">
             <label>Quantity</label>
-            <input class="form-control" type="number" name="updatedProduct['qty']" [(ngModel)]="updatedProduct['qty']" value="{{updatedProduct['qty']}}">
+            <input class="form-control" 
+            type="number" 
+            name="qty" 
+            required
+            #qty = "ngModel"
+            [(ngModel)]="updatedProduct['qty']" 
+            value="{{updatedProduct['qty']}}">
             <label>Price</label>
-            <input class="form-control" type="number" name="updatedProduct['price']" [(ngModel)]="updatedProduct['price']" value="{{updatedProduct['price']}}">
+            <input class="form-control" 
+            type="number" 
+            name="price"
+            required
+            #price = "ngModel" 
+            [(ngModel)]="updatedProduct['price']" 
+            value="{{updatedProduct['price']}}">
             
             <hr>
             <button type="submit" class="btn btn-success mx-2">Update</button>
         </form>
         <button class="btn btn-danger" [routerLink]="[ '/' ]">Back</button>
+        {{ name.invalid | json }}
+        <div *ngIf="name.invalid" class="text-danger">
+            Invalid name
+        </div>
+        <div *ngIf="qty.invalid" class="text-danger">
+            Invalid qty
+        </div>
+        <div *ngIf="price.invalid" class="text-danger">
+            Invalid price
+        </div>
         <div *ngIf="wrongInput">
             <p class="text-danger mt-3">{{ wrongInput.name.message }}</p>
             <p class="text-danger mt-3">{{ wrongInput.qty.message }}</p>

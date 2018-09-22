@@ -15,6 +15,8 @@ export class DetailComponent implements OnInit {
         price: 0
     }
     selectedProduct;
+    productList
+    theProduct
     wrongInput;
 
     constructor(private _httpService: HttpService,
@@ -29,8 +31,24 @@ export class DetailComponent implements OnInit {
         this.getProduct();
     }
 
+
     goHome() {
         this._router.navigate(['/']);
+    }
+
+    // loop through the list to find the match -> selectedProduct
+    showProducts() {
+        let obs = this._httpService.showProducts();
+        obs.subscribe(products => {
+            this.productList = products;
+            for (let product of this.productList) {
+                if (this.productId == product.id) {
+                    this.selectedProduct = product;
+                    console.log("This is the selectedProduct", this.selectedProduct);
+                }
+            }
+            console.log("We got you products", products)
+        })
     }
 
     getProduct() {
@@ -38,9 +56,6 @@ export class DetailComponent implements OnInit {
         obs.subscribe(product => {
             this.selectedProduct = product;
             console.log("Service got you product:", this.selectedProduct);
-            // price doesn't show up for some reasons...
-            // reassign selectedProduct's values to updatedProduct
-            // working on finding the error
             this.updatedProduct = {
                 name : this.selectedProduct['name'],
                 qty: this.selectedProduct['qty'],

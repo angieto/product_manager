@@ -3,20 +3,34 @@
     <div [formGroup]="productForm" class="form-group col-6 mx-auto mt-3">
         <form (submit)="createProduct()">
             <label>Name</label>
-            <input class="form-control" type="text" name="newProduct.name" required minlenght="3"
+            <input class="form-control" type="text" 
+            name="name" #name="ngModel" required minlength="3"
             [(ngModel)]="newProduct.name">
 
             <label>Quantity</label>
-            <input class="form-control" type="number" min="0" name="newProduct.qty" required min="0"
+            <input class="form-control" type="number" min="0" 
+            name="qty" #qty="ngModel" required min="0"
             [(ngModel)]="newProduct.qty">
+            
             <label>Price</label>
-            <input class="form-control" type="number" min="0" name="newProduct.price" required min="0"
+            <input class="form-control" type="number" min="0" 
+            name="price" #price="ngModel" required min="0"
             [(ngModel)]="newProduct.price">
 
-            <button type="submit" class="btn btn-success mx-2">Create</button>
+            <button *ngIf="name.valid && qty.valid && price.valid" type="submit" class="btn btn-success mx-2">Create</button>
             
         </form>
         <button class="btn btn-danger" [routerLink]="[ '/' ]">Cancel</button>
+
+        <div *ngIf="name.errors && name.touched" class="text-danger">
+            Invalid name
+        </div>
+        <div *ngIf="qty.errors && qty.untouched" class="text-danger">
+            Invalid quantity
+        </div>
+        <div *ngIf="price.errors && price.untouched" class="text-danger">
+            Invalid price
+        </div>
         <div *ngIf="wrongInput">
             <p class="text-danger mt-3">{{ wrongInput.name.message }}</p>
             <p class="text-danger mt-3">{{ wrongInput.qty.message }}</p>

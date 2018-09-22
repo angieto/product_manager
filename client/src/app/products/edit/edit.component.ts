@@ -42,7 +42,9 @@ export class EditComponent implements OnInit {
                 qty: this.selectedProduct['qty'],
                 price: this.selectedProduct['price']
             }
+            console.log("Updated Producte",this.updatedProduct);
         })
+        
     }
 
     updateProduct() {

@@ -12,7 +12,7 @@ const routes: Routes = [
     { path: 'products', component: ProductsComponent, children: [
         { path: '', component: DisplayComponent, pathMatch: 'full' },
         { path: 'new', component: CreationComponent },
-        { path: 'edit/:id', component: EditComponent } 
+        { path: 'edit/:id', component: EditComponent }, 
         { path: ':id', component: DetailComponent },
     ]},
     { path: '**', redirectTo: '/' }
